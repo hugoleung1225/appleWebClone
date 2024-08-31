@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Navbar from "./components/Navbar"
+import Hero from "./components/Hero"
+import Highlights from './components/Highlights'
+import Model from './components/Model'
 //import './App.css'
 
 const App = ()=> {
   //const [count, setCount] = useState(0)
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <main className="bg-black">
+      <Navbar/>
+      <Hero/>
+      <Highlights/>
+      <Model/>
+    </main>
   )
 }
 

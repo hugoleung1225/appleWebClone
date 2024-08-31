@@ -22,3 +22,20 @@ npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
       Hello world!
     </h1>
   )
+
+# 7 update constant variables , public images and videos
+# 8 update tab icon, title on index.html 
+# 9 update App.jsx
+# 10 create components 
+can type rafce to quickly create default component, needs to install es7+
+
+# 10.1 build Navbar
+# 10.1.1 define the structure of functional component
+# 10.1.2 add styles
+
+## Install THREE JS 
+npm install three @react-three/drei @react-three/fiber
+
+
+# 3D model generation: gltfsx ( glb to jsx )
+https://github.com/pmndrs/gltfjsx  / https://gltf.pmnd.rs/
