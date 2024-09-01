@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
-import { View, PerspectiveCamera, OrbitControls } from '@react-three/drei'
+import { Html,View, PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import Lights from './Light'
 import IPhone from './IPhone'
 import * as THREE from 'three'
+import Loader from './Loader'
 
 const ModelView = (
   {index,
@@ -16,9 +17,12 @@ const ModelView = (
     <View
       index={index}
       id={gsapType}
-      className={`w-full h-full ${index===2}?'right-[-100%]:''`}
+      //absolute position is required when using % to control
+      className={`w-full h-full absolute ${index===2?'right-[-100%]':''}`}
     >
-      <ambientLight intensity={0.3}/>
+
+      {/** brightness */}
+      <ambientLight intensity={1}/>
       <PerspectiveCamera makeDefault position={[0,0,4]} />
 
       <Lights/>
@@ -30,7 +34,7 @@ const ModelView = (
         enableZoom={false}
         enablePan={false}
         
-        rotateSpeed={0.4}
+        rotateSpeed={0.3}
         //target the center of the screen
         target={new THREE.Vector3(0,0,0)}
         onEnd={()=> setRotationState(controlRef.current.getAzimuthalAngle())}
@@ -38,7 +42,7 @@ const ModelView = (
 
       <group ref={groupRef} name={`${index===1}?'small':'large'`} position={[0,0,0]}>
         {/**Model loader */}
-        <Suspense>
+        <Suspense fallback={<Loader/>}>
           <IPhone
             scale={ size.value === 'small'?[15,15,15]:[17,17,17] }
             item={model}
