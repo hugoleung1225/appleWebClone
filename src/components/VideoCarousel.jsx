@@ -154,9 +154,6 @@ const VideoCarousel = () => {
       case 'video-last':
         setVideo( (pre)=> ({...pre, isLastVideo: true}) )
         break;
-      case 'playVideoI':
-
-        break;
       default:
         return video;
     }
@@ -214,7 +211,6 @@ const VideoCarousel = () => {
                 key = {i}
                 ref = {(el)=>(videoDivRef.current[i] = el)}
                 className='mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer'
-                onClick={()=>handlePlayProcess('playVideoI', i)}
               >
                 <span
                   ref = {(el)=>(videoSpanRef.current[i] = el)}

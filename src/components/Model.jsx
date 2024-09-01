@@ -1,17 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
+import gsap from 'gsap/src'
 import ModelView from './ModelView'
 import { models as modelList} from '../constants'
 import { sizes as sizeList } from '../constants'
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber'
 import { View } from '@react-three/drei'
-import { animateWithGsapTimeline } from '../utils/animations'
 
 const Model = () => {
   //size choosing state variable
-  const [size, setSize] = useState(sizeList[0].value);
+  const [size, setSize] = useState(sizeList[0]);
 
   //phone model state variable
   const [model, setModel] = useState(modelList[0]);
@@ -28,23 +27,7 @@ const Model = () => {
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation , setLargeRotation ] = useState(0);
 
-  const tl =  gsap.timeline();
 
-  useEffect(()=>{
-    if ( size === 'large' ){
-      animateWithGsapTimeline(tl, smallPhone, smallRotation,'#view1', "#view2", {
-        transform: 'translateX(-100%)',
-        duration: 2
-      })
-    }else if( size === 'small'){
-      animateWithGsapTimeline(tl, LargePhone, largeRotation,'#view2', "#view1", {
-        transform: 'translateX(0%)',
-        duration: 2       
-      })
-    }
-
-
-  }, [size])
 
   useGSAP(()=>{
     gsap.to( '#heading',{
@@ -123,8 +106,8 @@ const Model = () => {
                 {sizeList.map((item,i)=>(
                   <span 
                     key={item.value} className='size-btn'
-                    style={ {backgroundColor: size===item.value?"white":"transparent" , color: size===item.value?"black":'white'}  }
-                    onClick={()=> setSize(item.value)}
+                    style={ {backgroundColor: size===item?"white":"transparent" , color: size===item?"black":'white'}  }
+                    onClick={()=> setSize(item)}
                   >
                     {item.label}
                   </span>
